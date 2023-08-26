@@ -1,0 +1,45 @@
+#content {
+    padding: 5px;
+    height: 45px;
+    width: 400px;
+    resize: none;
+}
+.form-control {
+    display: flex;
+}
+.form-control button{
+    padding: 5px;
+    height: 55px;
+    line-height: 45px;
+    border: none;
+    background: #ccc;
+    text-align: center;
+    width: 80px;
+    margin-left: 5px;
+    font-weight: bold;
+}
+#list-task {
+    width: 600px;
+}
+#list-task h4 {
+    text-transform: uppercase;
+    font-size: 18px;
+}
+#list-task ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+#list-task ul li {
+    display: flex;
+}
+#list-task ul li div {
+   width: 80%;
+   background: #f1f1f1;
+   padding: 5px;
+   margin: 5px;
+}
+#list-task ul li a {
+    text-decoration: none;
+    display: block;
+}
