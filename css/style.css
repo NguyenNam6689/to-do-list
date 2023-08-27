@@ -17,6 +17,7 @@
     width: 80px;
     margin-left: 5px;
     font-weight: bold;
+    cursor: pointer;
 }
 #list-task {
     width: 600px;
@@ -32,14 +33,23 @@
 }
 #list-task ul li {
     display: flex;
+    background: #f1f1f1;
+    padding: 5px;
+    margin: 5px;
+    justify-content: space-around;
 }
 #list-task ul li div {
-   width: 80%;
-   background: #f1f1f1;
-   padding: 5px;
-   margin: 5px;
+    width: 80%;
+   
 }
 #list-task ul li a {
     text-decoration: none;
     display: block;
+    margin-right: 8px;
+    color: #999;
+    padding: 5px;
+}
+#list-task ul li a:nth-of-type(2) {
+    background: red;
+    border-radius: 5px;
 }
