@@ -5,7 +5,7 @@ const resultEle = document.querySelector('#result'); // Display area for the lis
 btnAddEle.addEventListener('click', handleButtonClick);
 
 // Display the initial list of tasks
-renderTasks();
+handleRenderTasks();
 
 const handleButtonClick = () => {
     // Get the input value, trim whitespace
@@ -21,36 +21,36 @@ const handleButtonClick = () => {
 
     // Check if taskId already exists, then update the task, otherwise add a new task
     if (taskId !== null) {
-        updateTask(taskId, task, tasks);
+        handleUpdateTask(taskId, task, tasks);
     } else {
-        addTask(task, tasks);
+        handleAddTask(task, tasks);
     }
 
     taskName.value = '';
-    renderTasks();
+    handleRenderTasks();
 }
 
-const updateTask = (id, updatedTask, tasks) => {
+const handleUpdateTask = (id, updatedTask, tasks) => {
     tasks[id] = updatedTask; // Update task content by id
     btnAddEle.removeAttribute('data-id'); // Remove the data-id attribute from the add task button to return to the "add new" mode
     saveTasksToLocalStorage(tasks);
 }
 
-const addTask = (newTask, tasks) => {
+const handleAddTask = (newTask, tasks) => {
     tasks.push(newTask);
     saveTasksToLocalStorage(tasks);
 }
 
-const deleteTask = (id) => {
+const handleDeleteTask = (id) => {
     if (confirm("Do you want to delete it?")) {
         const tasks = getTasksFromLocalStorage();
         tasks.splice(id, 1); // Delete the task by id
         saveTasksToLocalStorage(tasks);
-        renderTasks();
+        handleRenderTasks();
     }
 }
 
-const renderTasks = () => {
+const handleRenderTasks = () => {
     const tasks = getTasksFromLocalStorage();
     let content = '<ul>'
 
@@ -66,7 +66,7 @@ const renderTasks = () => {
     resultEle.innerHTML = content;
 }
 
-const editTask = (id) => {
+const handleEditTask = (id) => {
     const tasks = getTasksFromLocalStorage();
     const task = tasks[id]; // Get the task to edit
 
