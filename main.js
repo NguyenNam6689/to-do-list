@@ -40,8 +40,8 @@ const handleRenderTasks = () => {
     tasks.forEach((task, index) => {
         content += `<li>
             <div class="task-name">${task.name}</div>
-            <a href="#" onclick="editTask(${index})">Edit</a>
-            <a href="#" onclick="deleteTask(${index})">Delete</a>
+            <a href="#" onclick="handleEditTask(${index})">Edit</a>
+            <a href="#" onclick="handleDeleteTask(${index})">Delete</a>
          </li>`;
     });
 
