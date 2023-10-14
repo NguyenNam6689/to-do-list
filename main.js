@@ -2,32 +2,15 @@ const btnAddEle = document.querySelector('button'); // Button to add tasks
 const taskName = document.querySelector('#content'); // Input field for task content
 const resultEle = document.querySelector('#result'); // Display area for the list of tasks
 
-btnAddEle.addEventListener('click', handleButtonClick);
+const getTasksFromLocalStorage = () => {
+    // Get the list of tasks from Local Storage or return an empty array if there is no data
+    const storedTasks = localStorage.getItem('tasks');
+    return storedTasks ? JSON.parse(storedTasks) : [];
+}
 
-// Display the initial list of tasks
-handleRenderTasks();
-
-const handleButtonClick = () => {
-    // Get the input value, trim whitespace
-    const inputValue = taskName.value.trim();
-    if (!inputValue) {
-        alert('Please enter a task name !!');
-        return;
-    }
-
-    const taskId = btnAddEle.getAttribute('data-id');  // Get the id value from the data-id attribute of the add task button
-    const tasks = getTasksFromLocalStorage();
-    const task = { name: inputValue };
-
-    // Check if taskId already exists, then update the task, otherwise add a new task
-    if (taskId !== null) {
-        handleUpdateTask(taskId, task, tasks);
-    } else {
-        handleAddTask(task, tasks);
-    }
-
-    taskName.value = '';
-    handleRenderTasks();
+const saveTasksToLocalStorage = (tasks) => {
+    // Save the list of tasks to Local Storage
+    localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 const handleUpdateTask = (id, updatedTask, tasks) => {
@@ -77,13 +60,30 @@ const handleEditTask = (id) => {
     }
 }
 
-const getTasksFromLocalStorage = () => {
-    // Get the list of tasks from Local Storage or return an empty array if there is no data
-    const storedTasks = localStorage.getItem('tasks');
-    return storedTasks ? JSON.parse(storedTasks) : [];
+const handleButtonClick = () => {
+    // Get the input value, trim whitespace
+    const inputValue = taskName.value.trim();
+    if (!inputValue) {
+        alert('Please enter a task name !!');
+        return;
+    }
+
+    const taskId = btnAddEle.getAttribute('data-id');  // Get the id value from the data-id attribute of the add task button
+    const tasks = getTasksFromLocalStorage();
+    const task = { name: inputValue };
+
+    // Check if taskId already exists, then update the task, otherwise add a new task
+    if (taskId !== null) {
+        handleUpdateTask(taskId, task, tasks);
+    } else {
+        handleAddTask(task, tasks);
+    }
+
+    taskName.value = '';
+    handleRenderTasks();
 }
 
-const saveTasksToLocalStorage = (tasks) => {
-    // Save the list of tasks to Local Storage
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-}
+btnAddEle.addEventListener('click', handleButtonClick);
+
+// Display the initial list of tasks
+handleRenderTasks();
